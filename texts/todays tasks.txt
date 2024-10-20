@@ -1,0 +1,135 @@
+UnitTestingDemo.js
+-----------------------------------
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import CompanyInfo from './CompanyInfo/CompanyInfo';
+
+const UnitTestingDemo = () => {
+  return (
+    <div>
+      <Helmet>
+        <title>Unit Testing</title>
+      </Helmet>
+      <h1>Unit Testing Examples</h1>
+      <a href="https://reactjs.org/docs/testing.html">unit Testing Reference</a>
+      <CompanyInfo foundedYear="1998" employeeCount='3lakh+' />
+    </div>
+  );
+};
+
+export default UnitTestingDemo;
+----------------------------------
+
+UnitTestingDemo.test.js
+-----------------------------------
+// Unit tests
+
+//Arrange
+import {render, screen } from '@testing-library/react';
+import UnitTestingDemo from './UnitTestingDemo';
+
+describe('UnitTestingDemo',() => {
+//test spec
+  it('has \'Unit Testing Examples\'as heading ', () => {
+    //Act
+    render(<UnitTestingDemo />);
+    const heading = screen.getByText('Unit Testing Examples');
+    //Assert
+    expect(heading).toBeInTheDocument();
+  });
+  it('has link with \'Unit Testing Reference\'', () => {
+    //Act
+    render(<UnitTestingDemo />);
+    //Regex
+    const link = screen.getByText(/Unit Testing Reference/i);
+    //Assert
+    expect(link).toBeInTheDocument();// can have multi expectation
+  });
+});
+
+
+------------------------------------
+CompanyInfo.js
+-------------------------------------
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const CompanyInfo = (props) => {
+  return (
+    <div>
+      <hr />
+      <h2>CompanyInfo | Testing props,Styles,Placeholder Text, Events, States, Snapshot</h2>
+      <h3 data-testid="companyName">Company Name: Cognizant</h3>
+      <p data-testid="foundedYearElement" style={{
+        color: 'rgb(0, 255, 0)'
+        }}>Founded In: {props.foundedYear}</p>
+      <p data-testid="employeeCountElement">Employee :{props.employeeCount}</p>
+      <p><input type="text" placeholder='Enter Your Country Name'/></p>
+      <p><button  data-testid='buttonCheck' className='btn btn-primary'>Join Cognizant</button></p>
+    </div>
+  );
+};
+
+CompanyInfo.propTypes = {
+  foundedYear: PropTypes.string,
+  employeeCount: PropTypes.string
+};
+
+export default CompanyInfo;
+
+-------------------------------------
+CompanyInfo.test.js
+--------------------------------------
+// Unit tests
+
+//Arrange
+import { render, screen } from '@testing-library/react';
+import CompanyInfo from './CompanyInfo';
+
+describe('CompanyInfo', () => {
+  //test spec
+  it('should have companyName Cognizant', () => {
+    //Act
+    render(<CompanyInfo />);
+    const companyNameElement = screen.getByTestId('companyName');
+    console.log(companyNameElement.textContent);
+    //Assert
+    expect(companyNameElement.textContent).toBe('Company Name: Cognizant');
+  });
+
+  //testing props
+  it('receives foundedYear prop and dsiplay in JSX', () => {
+    //WHEN YOU ARE TESTING PROPY,RENDER THE COMPONENTS WITH THE NECESSARY PROPS
+    //always test the props when passing and also provide the prop type validation in .js file
+    render(<CompanyInfo foundedYear="2006" />);
+    const foundedYearElement = screen.getByTestId('foundedYearElement');
+    expect(foundedYearElement).toHaveTextContent('Founded In: 2006');
+  });
+  //todo
+  it('receives employee count', () => {
+    render(<CompanyInfo employeeCount="More than 3 lakhs" />);
+    const employeeCountElement = screen.getByTestId('employeeCountElement');
+    expect(employeeCountElement).toHaveTextContent('Employee :More than 3 lakhs');
+  });
+  //placeholder
+  it("has an input with 'Enter Your Country Name'as placeholder text", () => {
+    render(<CompanyInfo />);
+    expect(screen.getByPlaceholderText('Enter Your Country Name')).toBeTruthy();
+  });
+  // inline styles
+  it('has foundedYear with text color green --inline styles', () => {
+    render(<CompanyInfo foundedYear="2006" />);
+    const foundedYearElement = screen.getByTestId('foundedYearElement');
+    // recommended to use color code in hexa or rgb-- not the color names
+    expect(foundedYearElement).toHaveStyle('color: rgb(0, 255, 0)');
+  });
+  //todo
+  it('the button has css class btn-success and a text JOIN COGNIZANT', () => {
+    render(<CompanyInfo foundedYear="2006" />);
+    const buttonNameAndClass = screen.getByTestId('buttonCheck');
+    expect(buttonNameAndClass).toHaveClass('btn-primary')
+    expect(buttonNameAndClass).toHaveTextContent('Join Cognizant');
+  });
+});
+
+--------------------------------------

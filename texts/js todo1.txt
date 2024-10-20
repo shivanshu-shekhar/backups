@@ -1,0 +1,8 @@
+const employee = {
+  name : 'tom' ,
+  age : 30
+};
+console.log(employee);
+employee.name = 'Shivanshu';
+employee.age = 23;
+console.log(employee);

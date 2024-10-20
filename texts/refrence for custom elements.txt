@@ -1,0 +1,4 @@
+https://github.com/mdn/web-components-examples/blob/main/life-cycle-callbacks/main.js
+
+
+https://github.com/arunprabu/html-cs-js-cognizant-v3/blob/master/assets/scripts/main.js

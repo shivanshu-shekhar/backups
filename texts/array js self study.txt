@@ -1,0 +1,12 @@
+concat, every, filter, find, forEach, from, indexof, join, lastIndexOf, 
+map, of, pop, push, reduce, reduceRight, reverse, shift, 
+slice, some, sort, splice, unshift.
+
+
+
+useful link
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+
+useful link for arrow function
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions

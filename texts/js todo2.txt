@@ -1,0 +1,35 @@
+function calc(operation , num1 , num2){
+  let value = 0;
+  switch (operation){
+    case 'ADD' :
+      value = num1 + num2 ;
+      break;
+    case 'SUB' : 
+      value = num1 - num2;
+      break;
+    case 'MUL' : 
+      value = num1 * num2;
+      break;
+    case 'DIV' : 
+      value = num1 / num2;
+      break;
+    case 'MOD' : 
+      value = num1 % num2;
+      break;
+    default : 
+      value = Math.pow(num1 , num2);
+  }
+  return value ;
+}
+let output = calc ('ADD', 10 , 5);
+console.log(output);
+output= calc('SUB', 10 , 5);
+console.log(output);
+output= calc('MUL', 10 , 5);
+console.log(output);
+output= calc('DIV', 10 , 5);
+console.log(output);
+output= calc('MOD', 10 , 5);
+console.log(output);
+output= calc('EXP', 10 , 5);
+console.log(output);

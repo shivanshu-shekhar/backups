@@ -1,0 +1,331 @@
+ok by Shekhar, Shivanshu (Cognizant)
+Shekhar, Shivanshu (Cognizant)14:08
+ok
+import React, { Component } from 'react' cl... by Shekhar, Shivanshu (Cognizant)
+Shekhar, Shivanshu (Cognizant)14:10
+import React, { Component } from 'react'
+
+
+
+class ErrorBoundary extends Component {
+
+  state = {
+
+    hasError: false,
+
+  };
+
+  //to catch error
+
+  //when there is a runtime error this method willbe called
+
+  //when you donot have runtime error this wont be called
+
+  //this lifecycle is invoked after an error has been thrown bya descendent component
+
+  //it receives the error that was thrown as a parameter and should return a value to update state
+
+  static getDerivedStateFromError(error){
+
+    console.log("Inside getDerivedStateFromError");
+
+    //console.log(error);//you can see the error
+
+    //should return a vlue to update state
+
+    return({
+
+      hasError: true
+
+    });
+
+  }
+
+  //lifecycle hook
+
+  //only when run time error occurs this will be called
+
+  componentDidCatch(error,errorInfo) {
+
+    console.log("inside componentDidCatch");
+
+    console.log(error);//the error in original source
+
+    console.log(errorInfo);//the error in  compiled bundle.js
+
+    //you can also log these errors in logrocket or any other tools
+
+  }
+
+
+
+  render() {
+
+    if (this.state.hasError){
+
+      return (
+
+      <div className='alert alert-danger'>
+
+      <h2>Some Error Occured</h2>
+
+      <p>Try again after sometime</p>
+
+      </div>
+
+      );
+
+    }
+
+    else{
+
+      return this.props.children;
+
+    }
+
+  }
+
+}
+
+export default  ErrorBoundary
+
+
+
+error boundary by Shekhar, Shivanshu (Cognizant)
+Shekhar, Shivanshu (Cognizant)14:10
+error boundary
+
+Profile picture of Kumar Nayer, Gourav (Cognizant).
+ok by Kumar Nayer, Gourav (Cognizant)
+Kumar Nayer, Gourav (Cognizant)14:11
+ok
+
+import React from 'react' import applyStyle... by Shekhar, Shivanshu (Cognizant)
+Shekhar, Shivanshu (Cognizant)14:11
+import React from 'react'
+
+import applyStyles from '../../hoc/applyStyles';
+
+import Bye from './Bye/Bye';
+
+import Hello from './Hello/Hello';
+
+import LastLogin from './LastLogin/LastLogin'
+
+import  '../../../src/index.scss';
+
+import {Helmet} from 'react-helmet';
+
+import ErrorBoundary from '../../components/containers/shared/ErrorBoundary/ErrorBoundary';
+
+import Calculator from './Calculator/Calculator';
+
+
+
+const StyledHello = applyStyles(Hello);
+
+const StyledBye = applyStyles(Bye);
+
+
+
+const HocDemoPage = () => {
+
+  return (
+
+    <div>
+
+      <Helmet>
+
+        <title>HocDemo</title>
+
+      </Helmet>
+
+      <h2>Render Props</h2>
+
+      <LastLogin><p>Last login: 4 jan 2023 6 pm</p>
+
+      <p>Updated at 3 pm today</p>
+
+      </LastLogin>
+
+      <LastLogin><p>You are logged out do you want to log in</p>
+
+      <p>log in feature not built in this app</p>
+
+      </LastLogin>
+
+      <hr />
+
+      <h2>Higher Order Components</h2>
+
+      <StyledHello className="red-text" name="Jhon" />
+
+      <StyledBye className="red-text" name="Jhon" />
+
+      <hr />
+
+      <h2>Error Boundary Demo</h2>
+
+      <ErrorBoundary>
+
+        <Calculator />
+
+      </ErrorBoundary>
+
+    </div>
+
+  )
+
+}
+
+
+
+export default HocDemoPage
+
+HocDemoPage by Shekhar, Shivanshu (Cognizant)
+Shekhar, Shivanshu (Cognizant)14:11
+HocDemoPage
+
+//3 parts /* 1.import section 2.component d... by Shekhar, Shivanshu (Cognizant)
+
+Shekhar, Shivanshu (Cognizant)14:12
+//3 parts
+
+/*
+
+1.import section
+
+2.component defination
+
+3.export
+
+*/
+
+//import
+
+//import logo from './logo.svg';
+
+import { BrowserRouter,Routes,Route} from 'react-router-dom';//for routing our single page app
+
+import './App.scss';
+
+import Header from './components/Header/Header';
+
+import Footer from './components/Footer/Footer';
+
+import HomePage from './pages/HomePage/HomePage';
+
+import AboutPage from './pages/AboutPage/AboutPage';
+
+import ContactUsPage from './pages/ContactUsPage/ContactUsPage';
+
+import StyledComponent from './pages/HomePage/StyledComponent/StyledComponent';
+
+import HocDemoPage from './pages/HocDemoPage/HocDemoPage';
+
+import ErrorBoundary from '../src/components/containers/shared/ErrorBoundary/ErrorBoundary'
+
+
+
+//component defination
+
+function App() {
+
+  //must return jsx
+
+  return (
+
+    <BrowserRouter>
+
+      <div>
+
+        {/*header */}
+
+        <Header></Header>
+
+          <main className='container mt-5 pt-3'>
+
+           
+
+            <ErrorBoundary>
+
+              <Routes>
+
+                {/*url configuration*/}
+
+                <Route path='/' element={<HomePage />} />
+
+                <Route path='/about' element={<AboutPage />} />
+
+                <Route path='/contact-us' element={<ContactUsPage />} />
+
+                <Route path='/styled-comp-demo' element={<StyledComponent />} />
+
+                <Route path='/hoc' element={<HocDemoPage/>} />
+
+              </Routes>
+
+            </ErrorBoundary>
+
+         
+
+          </main>
+
+        <Footer />
+
+      </div>
+
+    </BrowserRouter>
+
+   
+
+  );
+
+}
+
+
+
+//export
+
+export default App;
+
+
+
+app.js by Shekhar, Shivanshu (Cognizant)
+
+Shekhar, Shivanshu (Cognizant)14:12
+app.js
+
+import React from 'react' //comment the lin... by Shekhar, Shivanshu (Cognizant)
+
+Shekhar, Shivanshu (Cognizant)14:12
+import React from 'react'
+
+//comment the line no. 7 to solve error to cause error uncomment it
+
+const Calculator = (props) => {
+
+  return (
+
+    <div>
+
+      <h3>Calculator</h3>
+
+      {/* <p>{props.add()}</p> */}
+
+    </div>
+
+  );
+
+}
+
+
+
+export default Calculator
+
+calculator.js by Shekhar, Shivanshu (Cognizant)
+
+Shekhar, Shivanshu (Cognizant)14:12
+calculator.js
+
+has context menu
