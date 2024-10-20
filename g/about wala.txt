@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header>
+      <aside>
+        <button type="button">...</button>
+        <nav id="primaryNav">
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/">Shorts</a></li>
+            <li><a href="/">Subscription</a></li>
+            <li><a href="/">Library</a></li>
+            <li><a href="/">History</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <a href="./index.html">
+        <img src="./assets/images/youtube-logo-icon.png" alt="youtube logo"></a>
+      <input type="search" placeholder="Search">
+      <button>search</button>
+      <button>mic</button>
+      <button>...</button>
+      <button>Sign in</button>
+      <hr>
+    </header>
+
+    <main>
+
+      <aside>
+        <nav>
+          <ul>
+            <li><a href="/about.html#aboutYoutube">About Youtube</a></li>
+            <li><a href="/about.html#introVideo">Youtube intro video</a></li>
+            <li><a href="/about.html#introAudio">YouTube intro audio</a></li>
+            <li><a href="/about.html#youtubeServices">YouTube services</a></li>
+          </ul>
+        </nav>
+      </aside>
+      
+      <div>
+        <section id="aboutYoutube">
+          <h1> About youtube!</h1>
+          <p>Youtube is an American online video sharing and social media
+          platform headquartered in San Bruno, California.
+          It was launched on February 14, 2005, by Steve Chen,
+          Chad Hurley, and Jawed Karim. It is owned by Google,
+          and is the second most visited website, after Google Search</p>
+        </section>
+      </div>
+      <div>
+        <a href="/index.html">Browse Videos</a>
+      </div>
+
+      <div>
+        <section id="introVideo">
+          <h2> Intro video!</h2>
+          <video width="320" height="240" controls>
+            <source src="./assets/videos/mov-bbb.mp4" type="video/mp4">
+          </video>
+        </section>
+      </div>
+
+      <div>
+        <section id="introAudio">
+          <h2> Intro audio!</h2>
+          <audio controls>
+            <source src="./assets/audios/synth.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+        </section>
+      </div>
+    
+      <div>
+        <section id="youtubeServices">
+          <h2> Youtube sevices!</h2>
+          <p>YouTube is easily the most well-known video platform on
+          the web. Launched in 2005, and then acquired by Google
+          in 2006 for over $1.6 billion, the video service began
+          its life mostly as a web-based PC service, allowing anyone
+          to upload their creations for everyone to see and watch.
+          When smartphones started becoming popular by the end of the
+          2000s, followed by the rise of smart TVs and mobile apps
+          followed, and its popularity exploded. Google now says
+          that over 2 billion users worldwide check out YouTube
+          videos every month and that over 70 percent of its video
+          views come from mobile devices.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <hr>
+      <nav id="secondaryNav">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <p>Copyright shivanshu|2022</p>
+    </footer>
+  </body>
+
+</html>

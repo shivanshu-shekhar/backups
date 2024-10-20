@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome Youtube-v1 home page.The best video platform">
+    <meta name="keywords" content="movie video, music video,live stream,sports,sports video">
+    <title>Document</title>
+   </head>
+  
+   <body>
+    
+    <header>
+      <aside>
+        <button type="button">...</button>
+        <nav id="primaryNav">
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/">Shorts</a></li>
+            <li><a href="/">Subscription</a></li>
+            <li><a href="/">Library</a></li>
+            <li><a href="/">History</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <a href="./index.html">
+        <img src="./assets/images/youtube-logo-icon.png" alt="youtube logo"></a>
+      <input type="search" placeholder="Search">
+      <button>search</button>
+      <button>mic</button>
+      <button>...</button>
+      <button>Sign in</button>
+      <hr>
+    </header>
+
+    <main>
+      <h1> Contact us!</h1>
+      
+      <div>
+        <section>
+          <h2>google map here</h2>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.2543554978306!2d88.427629609296!3d22.56958823299817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb40644f7422db8f4!2zMjLCsDM0JzEwLjUiTiA4OMKwMjUnNDkuNiJF!5e0!3m2!1sen!2sin!4v1670390811631!5m2!1sen!2sin" 
+          width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+        <section>
+          <h2>adress here</h2>
+          <address>
+            <h4>Cognizant Technology Solutions</h4>
+            GN Block, Sector V<br>
+            Bidhannagar,Kolkata,West Bengal-700091<br>
+            <p>Phone:8102667045</p>
+            <p><a href="mailto:contact@cognizant.com">contact@cognizant.com</a></p>
+          </address>
+        </section>
+      </div>
+
+      <section>
+        <h2>form here</h2>
+        Name,Email,Phone,Query(textarea),Reset button,Submit button
+        <form action="">
+          <div>
+            <label for="enterName">Enter name:</label>
+            <input id="enterName" type="text" placeholder="Enter name" name="name" min="1" max="11" required>
+          </div>
+          <div>
+            <label for="enterEmail">Enter email:</label>
+            <input id="enterEmail" type="email" placeholder="Enter email" name="email" min="5" max="50" required>
+          </div>
+          <div>
+            <label for="enterPhone">Enter phone no.:</label>
+            <input id="enterPhone" type="number" placeholder="Enter phone no." name="phone" min="10" max="10" required>
+          </div>
+          <div>
+            <label for="enterQuery">Enter Query:</label>
+            <textarea name="enterQuery" id="enterQuery" cols="30" 
+            rows="10" placeholder="Enter your Query" name="query" min="1" max="100" required></textarea>
+          </div>
+            <span><button type="reset">RESET</button></span>
+            <span><button type="submit">SUBMIT</button></span>
+        </form>
+      </section>
+    
+    </main>
+    
+    <footer>
+      <hr>
+      <nav id="secondaryNav">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <p>Copyright shivanshu|2022</p>
+    </footer>
+
+  </body>
+
+</html>

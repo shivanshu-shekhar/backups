@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Routine</title>
+</head>
+<body>
+  <p>Total score = 16 check how much you have scored each task has 2 points:-</p>
+  <p>(rule=> find your score enter it in your mobile graph app)</p>
+  <form id="routineForm">
+    <div id="wakeUp">1)Wake Up 5am:-
+      <input type="radio" id="yesWake" name="waking-up" value="yes">
+      <label for="yesWake">yes</label>
+      <input type="radio" id="noWake" name="waking-up" value="no">
+      <label for="noWake">no</label>
+    </div>
+    <div id="washBrush">2)Washroom & Brush:-
+      <input type="radio" id="yesWashBrush" name="washing-brushing" value="yes">
+      <label for="yesWashBrush">yes</label>
+      <input type="radio" id="noWashBrush" name="washing-brushing" value="no">
+      <label for="noWashBrush">no</label>
+    </div>
+    <div id="exercise">3)Exercise:-
+      <input type="radio" id="yesExercise" name="exercising" value="yes">
+      <label for="yesExercise">yes</label>
+      <input type="radio" id="noExercise" name="exercising" value="no">
+      <label for="noExercise">no</label>
+    </div>
+    <div id="bath">4)Bath:-
+      <input type="radio" id="yesBath" name="bathing" value="yes">
+      <label for="yesBath">yes</label>
+      <input type="radio" id="noBath" name="bathing" value="no">
+      <label for="noBath">no</label>
+    </div>
+    <div id="breakfast">5)Breakfast:-
+      <input type="radio" id="yesBreakfast" name="breakfasting" value="yes">
+      <label for="yesBreakfast">yes</label>
+      <input type="radio" id="noBreakfast" name="breakfasting" value="no">
+      <label for="noBreakfast">no</label>
+    </div>
+    <div id="office">6)Go to office/study :-
+      <input type="radio" id="yesOffice" name="office-study" value="yes">
+      <label for="yesOffice">yes</label>
+      <input type="radio" id="noOffice" name="office-study" value="no">
+      <label for="noOffice">no</label>
+    </div>
+    <div id="dinner">7)Dinner:-
+      <input type="radio" id="yesDinner" name="dinnering" value="yes">
+      <label for="yesDinner">yes</label>
+      <input type="radio" id="noDinner" name="dinnering" value="no">
+      <label for="noDinner">no</label>
+    </div>
+    <div id="sleep">8)Sleep at 10pm:-
+      <input type="radio" id="yesSleep" name="sleeping" value="yes">
+      <label for="yesSleep">yes</label>
+      <input type="radio" id="noSleep" name="sleeping" value="no">
+      <label for="noSleep">no</label>
+    </div>
+    <div>
+      <span>
+        score:-
+      </span>
+      <span id="result"></span><br>
+      <input type="submit" id="submitBtn">
+      <input type="reset">
+      <button id="graphDisplayer" disabled>Show me the graph</button>
+    </div>
+  </form>
+  <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+  <script src="daily-routine.js"></script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+</body>
+</html>
