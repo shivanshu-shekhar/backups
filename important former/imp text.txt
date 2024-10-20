@@ -1,0 +1,366 @@
+important former 
+1. routing products page
+<Route path="/products/product-category" element={<Products />}>
+          {/* nested routing */}
+          <Route path="tab-products" element={<TabProducts />}> 
+            <Route path="mens-clothing" element ={<MensClothing />}>
+              <Route path="products-details" element={<ProductsDetails />}>
+                <Route path="feedback" element={<Feedback />} />
+              </Route>
+            </Route>
+            <Route path="womens-clothing" element ={<WomensClothing/>}>
+              <Route path="products-details" element={<ProductsDetails />}>
+                <Route path="feedback" element={<Feedback />} />
+              </Route>
+            </Route>
+          </Route>
+        </Route>
+2.clothes/ mens clothing
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from "react-router-dom";
+
+class MensClothing extends Component {
+  state = {
+    isLoading: true,
+    isError: false,
+    detail: []
+  };
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/data?type=men')
+      .then((res) => {
+        console.log(res.data);
+        //TODO: make use of above data and display the ui
+        this.setState({
+          isLoading: false,
+          isError: false,
+          detail: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          isLoading: false,
+          isError: true
+        });
+      })
+      .finally(() => {
+        console.log('It is over!');
+      });
+  }
+  render() {
+    if (this.state.isLoading) {
+      return (
+        <div className="text-center mt-5">
+          <div className="spinner-border text-danger" role="status"></div>
+        </div>
+      );
+    }
+    //search for error
+    if (this.state.isError) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Sorry unable to fetch photos. Try after sometime.
+        </div>
+      );
+    }
+    return (
+      <div>
+        <div className="row pt-3">
+          {this.state.detail.map(({ id, url, title, alt}) => (
+            <div className="col-md-3" key={id}>
+              <div className="card shadow-sm">
+                <img src={url} alt={alt} />
+                <div className="card-body">
+                  <p className="card-text"><Link to="products-details">{title}</Link></p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+}
+export default MensClothing;
+3. clothes /women clo
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class WomensClothing extends Component {
+  state = {
+    isLoading: true,
+    isError: false,
+    detail: []
+  };
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/data?type=women')
+      .then((res) => {
+        console.log(res.data);
+        //TODO: make use of above data and display the ui
+        this.setState({
+          isLoading: false,
+          isError: false,
+          detail: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          isLoading: false,
+          isError: true
+        });
+      })
+      .finally(() => {
+        console.log('It is over!');
+      });
+  }
+  render() {
+    if (this.state.isLoading) {
+      return (
+        <div className="text-center mt-5">
+          <div className="spinner-border text-danger" role="status"></div>
+        </div>
+      );
+    }
+    //search for error
+    if (this.state.isError) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Sorry unable to fetch photos. Try after sometime.
+        </div>
+      );
+    }
+    return (
+      <div>
+        <div className="row pt-3">
+          {this.state.detail.map(({ id, url, title, alt}) => (
+            <div className="col-md-3" key={id}>
+              <div className="card shadow-sm">
+                <img src={url} alt={alt} />
+                <div className="card-body">
+                  <p className="card-text">{title}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+}
+export default WomensClothing;
+5. feed back
+
+import React from "react";
+import feedback from "../../../assets/images/feedback.png";
+
+const Feedback = () => {
+  return (
+    <div>
+      
+      <div style={{ textAlign: "center" }}>
+        <img src={feedback} width="200" height="150" alt=""/>
+      </div>
+
+      <form style={{border:"1px solid grey"}}>
+        <div className="row p-3">
+          <div className="col">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Name"
+            />
+          </div>
+          <div className="col">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+            />
+          </div>
+        </div>
+        <div className="col p-3">
+          <input
+            type="tel"
+            className="form-control"
+            placeholder="Phone"
+          />
+        </div>
+        <div className="col p-3">
+        <textarea className="form-control" aria-label="With textarea" placeholder="Feedback atleast 50 words">
+        </textarea>
+        </div>
+        <div style={{backgroundColor: "red", color: "white", textAlign: "center"}}>
+          Ratings
+        </div>
+        <div style={{textAlign: "center", padding: "4px"}}>
+        <button type="button" className="btn btn-outline-danger">😠</button>
+        <button type="button" className="btn btn-outline-warning">😐</button>
+        <button type="button" className="btn btn-outline-success">😃</button>
+        </div>
+        <div style={{textAlign: "center", padding: "4px"}}>
+          <button type="submit" className="btn btn-danger">
+            Submit
+          </button>
+        </div>
+      </form>
+
+    </div>
+  );
+};
+
+export default Feedback;
+
+6.import React, { Component } from 'react'
+
+class ProductsDetails extends Component {
+  render() {
+    return (
+      <div>ProductsDetails</div>
+    )
+  }
+}
+export default ProductsDetails;
+7.import React from "react";
+import { Link, Outlet } from "react-router-dom";
+const TabProducts = () => {
+  return (
+    <div>
+      <div>
+        <span>   
+          <Link to="mens-clothing">   
+            <span className="btn btn-outline-secondary mt-3">
+              Mens Clothing
+            </span> 
+          </Link>
+        </span>
+        <span className="p-2">
+          <Link to="womens-clothing">  
+            <span className="btn btn-outline-secondary mt-3">
+              Womens Clothing
+            </span>
+          </Link>
+        </span>
+      </div>
+      <Outlet />
+    </div>
+  );
+};
+export default TabProducts;
+8.
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+const ProductsPage = () => {
+  return (
+    <div style={{textAlign: "center"}}>
+      <Link to="tab-products" className=" gap-2 col-4 mx-auto">
+        <p className="btn btn-danger mt-3">Product Category</p>
+      </Link>
+      <Outlet />
+    </div>
+  );
+};
+export default ProductsPage;
+
+9.get in touch
+import axios from 'axios';
+import React, { Component } from 'react';
+import getintouch from "../../../assets/images/getintouch.png";
+
+class GetInTouch extends Component {
+  state = {
+    isLoading: true,
+    isError: false,
+    detail: [],
+    entry: {}
+  };
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/contactData')
+      .then((res) => {
+        console.log(res.data);
+        //TODO: make use of above data and display the ui
+        this.setState({
+          isLoading: false,
+          isError: false,
+          detail: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          isLoading: false,
+          isError: true
+        });
+      })
+      .finally(() => {
+        console.log('It is over!');
+      });
+  }
+  render(){
+    //loader
+   if (this.state.isLoading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-danger" role="status"></div>
+      </div>
+    );
+  }
+  //search for error
+  if (this.state.isError) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        Sorry unable to fetch photos. Try after sometime.
+      </div>
+    );
+  }
+    return (
+      <div style={{padding: "25px"}}>
+        <img src={getintouch} alt="" />
+        <form style={{border:"1px solid grey"}}>
+          <div className="col p-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Name"
+            />
+          </div>
+          <div className="col p-3">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+            />
+          </div>
+          
+          <div className="col p-3">
+            <input
+              type="tel"
+              className="form-control"
+              placeholder="Phone"
+            />
+          </div>
+          <div className="col p-3">
+          <textarea className="form-control" aria-label="With textarea" placeholder="Message">
+          </textarea>
+          </div>
+          <div style={{textAlign: "center", padding: "4px"}}>
+            <button type="submit" className="btn btn-danger">
+              Submit
+            </button>
+          </div>
+        </form>
+        <h2>Contact Us</h2>
+        <div className="flex-container">
+          <div><h3>Address - {this.state.detail.address}</h3></div>
+          <div><h3>Phone - {this.state.detail.phone[0]},{this.state.detail.phone[1]}</h3></div>
+          <div><h3>Email - {this.state.detail.email}</h3></div>
+          </div>
+      </div>
+    )
+  }
+}
+export default GetInTouch
