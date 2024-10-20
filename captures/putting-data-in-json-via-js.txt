@@ -1,0 +1,183 @@
+"an exercise on putting value in json file"
+**HTML**
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review Form</title>
+  <style>
+    /* Add some basic styling to make the form look decent */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button[type="submit"], button[type="reset"] {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ccc;
+      color: #fff;
+      cursor: pointer;
+    }
+    button[type="reset"] {
+      background-color: red;
+    }
+   .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .enabled{
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .enabled-label{
+      opacity: 1;
+      pointer-events: auto
+      
+    }
+  </style>
+</head>
+<body>
+  <form id="review-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email" id="emailLabel" class="disabled">Email:</label>
+    <input type="email" id="email" name="email" required disabled>
+
+    <label >Rating:</label>
+    <input type="radio" id="positive" name="rating" value="positive" disabled>
+    <label for="positive" id="positiveLabel"class="disabled">Positive</label>
+    <input type="radio" id="negative" name="rating" value="negative" disabled>
+    <label for="negative" id="negativeLabel" class="disabled">Negative</label>
+
+    <label class="disabled">Review:</label>
+    <textarea id="review" name="review" maxlength="1000" disabled></textarea>
+
+    <button type="submit" disabled>Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------------
+**JS**
+const form = document.getElementById('review-form');
+const usernameInput = document.getElementById('username');
+const emailInput = document.getElementById('email');
+const ratingRadios = document.getElementsByName('rating');
+const reviewTextarea = document.getElementById('review');
+const submitButton = document.getElementById('submit');
+const resetButton = document.getElementById('reset');
+
+// Enable email input when username is filled
+usernameInput.addEventListener('input', () => {
+  if (usernameInput.value.trim()!== '') {
+    emailInput.disabled = false;
+    // emailInput.parentNode.classList.remove('disabled');
+    emailInput.classList.add('enabled');
+    document.getElementById('emailLabel').classList.remove('disabled')
+    document.getElementById('emailLabel').classList.add('enabled-label')
+  } else {
+    emailInput.disabled = true;
+     document.getElementById('emailLabel').classList.remove('enabled-label')
+    document.getElementById('emailLabel').classList.add('disabled')
+    //emailInput.parentNode.classList.add('disabled');
+  }
+});
+
+// Enable rating radios when email is filled
+emailInput.addEventListener('input', () => {
+  if (emailInput.value.trim()!== '') {
+    ratingRadios.forEach((radio) => {
+      radio.disabled = false;
+      radio.classList.remove('disabled')
+      radio.classList.add('enabled-label')
+      //radio.parentNode.classList.remove('disabled');
+    });
+    document.getElementById('positiveLabel').classList.remove('disabled')
+      document.getElementById('negativeLabel').classList.remove('disabled')
+      document.getElementById('positiveLabel').classList.add('enabled-label')
+      document.getElementById('negativeLabel').classList.add('enabled-label')
+  } else {
+    ratingRadios.forEach((radio) => {
+      radio.disabled = true;
+      radio.classList.remove('enabled-label')
+      radio.classList.add('disabled')
+      radio.checked = false
+      reviewTextarea.disabled = true;
+      //radio.parentNode.classList.add('disabled');
+    });
+    document.getElementById('positiveLabel').classList.remove('enabled-label')
+      document.getElementById('negativeLabel').classList.remove('enabled-label')
+      document.getElementById('positiveLabel').classList.add('disabled')
+      document.getElementById('negativeLabel').classList.add('disabled')
+      
+  }
+});
+
+// Enable review textarea when rating is selected
+ratingRadios.forEach((radio) => {
+  radio.addEventListener('change', () => {
+    reviewTextarea.disabled = false;
+    reviewTextarea.parentNode.classList.remove('disabled');
+  });
+});
+
+// Enable submit button when review is filled
+reviewTextarea.addEventListener('input', () => {
+  if (reviewTextarea.value.trim()!== '') {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+});
+
+// Reset form fields when reset button is clicked
+resetButton.addEventListener('click', () => {
+  form.reset();
+  usernameInput.disabled = false;
+  document.getElementById('emailLabel').classList.remove('enabled-label')
+    document.getElementById('emailLabel').classList.add('disabled')
+  emailInput.disabled = true;
+  ratingRadios.forEach((radio) => {
+    radio.disabled = true;
+  });
+  reviewTextarea.disabled = true;
+  submitButton.disabled = true;
+});
